@@ -1,0 +1,35 @@
+name: Deploy to DreamHost
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your deployment branch
+
+jobs:
+  deploy:
+    name: Deploy to DreamHost
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.10.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Sync files to DreamHost
+        env:
+          RSYNC_PASSWORD: ${{ secrets.DREAMHOST_PASSWORD }}
+        run: |
+          rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            ./ \
+            ${{ secrets.DREAMHOST_USER }}@${{ secrets.DREAMHOST_HOST }}:${{ secrets.DREAMHOST_PATH }}
+
+      - name: Restart services (if needed)
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.DREAMHOST_USER }}@${{ secrets.DREAMHOST_HOST }} \
+          'touch /home/${{ secrets.DREAMHOST_USER }}/alba-creative.me/.restart'
+
