@@ -1,0 +1,23 @@
+# Ignore everything in wp-content
+wp-content/*
+
+# Except for specific folders that are part of your project (like themes and plugins)
+!wp-content/themes/
+!wp-content/plugins/
+
+# Ignore uploaded files (optional)
+wp-content/uploads/
+
+# Ignore cache files (optional)
+wp-content/cache/
+
+# Ignore WordPress backups
+wp-content/backups/
+
+# Ignore the object cache (optional)
+wp-content/object-cache.php
+
+# Ignore other potentially sensitive files
+wp-content/debug.log
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
