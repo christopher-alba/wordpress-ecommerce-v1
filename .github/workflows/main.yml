@@ -19,7 +19,9 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
+      - name: run install on all plugins
+        run: |
+          cd plugins/banner-component && npm install && npm run build
       - name: Sync files to DreamHost
         env:
           RSYNC_PASSWORD: ${{ secrets.DREAMHOST_PASSWORD }}
