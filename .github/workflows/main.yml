@@ -32,5 +32,5 @@ jobs:
       - name: Restart services (if needed)
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.DREAMHOST_USER }}@${{ secrets.DREAMHOST_HOST }} \
-          'touch /home/${{ secrets.DREAMHOST_USER }}/alba-creative.me/.restart'
+          'touch /home/${{ secrets.DREAMHOST_USER }}/ecommerce-v1.alba-creative.me/.restart'
 
