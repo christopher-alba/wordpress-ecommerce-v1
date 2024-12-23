@@ -21,3 +21,9 @@ wp-content/object-cache.php
 wp-content/debug.log
 wp-content/advanced-cache.php
 wp-content/wp-cache-config.php
+
+#ignore all npm packages
+node_modules
+
+#ignore all auto generated build folders
+**/build/*
