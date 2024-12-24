@@ -1,20 +1,38 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 3,
-	"name": "create-block/banner-component",
-	"version": "0.1.0",
-	"title": "Banner Component",
-	"category": "widgets",
-	"icon": "media-interactive",
-	"description": "An interactive block with the Interactivity API.",
-	"example": {},
-	"supports": {
-		"interactivity": true
-	},
-	"textdomain": "banner-component",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"render": "file:./render.php",
-	"viewScriptModule": "file:./view.js"
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "create-block/banner-component",
+  "version": "0.1.0",
+  "title": "Banner Component",
+  "category": "widgets",
+  "icon": "media-interactive",
+  "description": "An interactive block with the Interactivity API.",
+  "attributes": {
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "heading": {
+      "type": "string",
+      "default": "Your Heading Here"
+    },
+    "description": {
+      "type": "string",
+      "default": "Your Description Here"
+    },
+    "slogan": {
+      "type": "string",
+      "default": "Your Slogan Here"
+    }
+  },
+  "example": {},
+  "supports": {
+    "interactivity": true
+  },
+  "textdomain": "banner-component",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScriptModule": "file:./view.js"
 }

@@ -10,47 +10,23 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
-// Generates a unique id for aria-controls.
-$unique_id = wp_unique_id( 'p-' );
+$image_url   = isset( $attributes['imageUrl'] ) ? esc_url( $attributes['imageUrl'] ) : '';
+$heading     = isset( $attributes['heading'] ) ? esc_html( $attributes['heading'] ) : __( 'Your Heading Here', 'custom-blocks' );
+$description = isset( $attributes['description'] ) ? esc_html( $attributes['description'] ) : __( 'Your Description Here', 'custom-blocks' );
+$slogan      = isset( $attributes['slogan'] ) ? esc_html( $attributes['slogan'] ) : __( 'Your Slogan Here', 'custom-blocks' );
 
-// Adds the global state.
-wp_interactivity_state(
-	'create-block',
-	array(
-		'isDark'    => false,
-		'darkText'  => esc_html__( 'Switch to Light', 'banner-component' ),
-		'lightText' => esc_html__( 'Switch to Dark', 'banner-component' ),
-		'themeText'	=> esc_html__( 'Switch to Dark', 'banner-component' ),
-	)
-);
+// Generates a unique id for accessibility purposes.
+$unique_id = wp_unique_id( 'custom-block-' );
 ?>
 
-<div
-	<?php echo get_block_wrapper_attributes(); ?>
-	data-wp-interactive="create-block"
-	<?php echo wp_interactivity_data_wp_context( array( 'isOpen' => false ) ); ?>
-	data-wp-watch="callbacks.logIsOpen"
-	data-wp-class--dark-theme="state.isDark"
->
-	<button
-		data-wp-on--click="actions.toggleTheme"
-		data-wp-text="state.themeText"
-	></button>
+<div <?php echo get_block_wrapper_attributes(); ?>>
+	<?php if ( $image_url ) : ?>
+		<img src="<?php echo $image_url; ?>" alt="<?php esc_attr_e( 'Uploaded Image', 'custom-blocks' ); ?>" />
+	<?php endif; ?>
 
-	<button
-		data-wp-on--click="actions.toggleOpen"
-		data-wp-bind--aria-expanded="context.isOpen"
-		aria-controls="<?php echo esc_attr( $unique_id ); ?>"
-	>
-		<?php esc_html_e( 'Toggle', 'banner-component' ); ?>
-	</button>
+	<h2><?php echo $heading; ?></h2>
 
-	<p
-		id="<?php echo esc_attr( $unique_id ); ?>"
-		data-wp-bind--hidden="!context.isOpen"
-	>
-		<?php
-			esc_html_e( 'Banner Component - hello from an interactive block!', 'banner-component' );
-		?>
-	</p>
+	<p><?php echo $description; ?></p>
+
+	<p class="slogan"><?php echo $slogan; ?></p>
 </div>
