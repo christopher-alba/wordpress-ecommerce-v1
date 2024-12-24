@@ -4,3 +4,21 @@ Author: Christopher Alba
 Description: A block-based theme using Full Site Editing.
 Version: 1.0
 */
+
+.light-theme {
+  --background-main: #ffffff;
+  --color-main: #000000;
+  --tertiary-main: #b8a9a9;
+  background: var(--background-main);
+  color: var(--color-main);
+  font-family: "Inter", serif;
+}
+
+.dark-theme {
+  --background-main: #333;
+  --color-main: #fff;
+  --tertiary-main: #b8a9a9;
+  background: var(--background-main);
+  color: var(--color-main);
+  font-family: "Inter", serif;
+}
